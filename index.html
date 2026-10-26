@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AGIL — Freelance Real Estate & Architectural Photo Editor. 7+ years of experience in HDR blending, flambient editing, day-to-dusk, and virtual staging.">
+<meta property="og:title" content="AGIL — Real Estate & Architectural Photo Editor">
+<meta property="og:description" content="Natural, realistic property image editing with 7+ years of experience.">
+<title>AGIL — Real Estate & Architectural Photo Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ─── Design tokens ─── */
+:root {
+  --bg:       #0d0d0d;
+  --surface:  #141414;
+  --card:     #1a1a1a;
+  --border:   #2a2a2a;
+  --gold:     #c9a96e;
+  --gold-lt:  #e2c896;
+  --white:    #f5f0e8;
+  --muted:    #888;
+  --text:     #e0d8cc;
+  --radius:   4px;
+  --ease:     cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+/* ─── Layout ─── */
+.wrap { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
+
+/* ─── Header / Nav ─── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 72px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(13,13,13,.85);
+  transition: background .3s var(--ease);
+}
+.nav {
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand {
+  display: flex; align-items: center; gap: 16px;
+}
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px; font-weight: 500; letter-spacing: -1px;
+  color: var(--white);
+  line-height: 1;
+}
+.brand-sub {
+  border-left: 1px solid var(--border);
+  padding-left: 16px;
+  font-size: 9px; letter-spacing: 3px; line-height: 1.9;
+  text-transform: uppercase; color: var(--muted);
+}
+.navlinks {
+  display: flex; align-items: center; gap: 28px;
+  font-size: 12px; letter-spacing: .5px; color: var(--muted);
+}
+.navlinks a { transition: color .2s; }
+.navlinks a:hover { color: var(--white); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  transition: background .2s, color .2s;
+  border-radius: var(--radius);
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
+.hamburger { display: none; font-size: 22px; color: var(--white); padding: 6px; }
+
+/* ─── Hero ─── */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 72px;
+}
+.hero-copy {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px max(24px, calc((100vw - 1320px) / 2 + 24px)) 80px max(48px, calc((100vw - 1320px) / 2 + 24px));
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+}
+.eyebrow::before {
+  content: ''; width: 32px; height: 1px; background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 400; line-height: 1.05;
+  letter-spacing: -1.5px;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.hero h1 em { font-style: italic; color: var(--gold-lt); }
+.hero-lead {
+  font-size: 15px; line-height: 1.8; color: var(--muted);
+  max-width: 420px; margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 13px; font-weight: 600; letter-spacing: .5px;
+  border-radius: var(--radius);
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  border-radius: var(--radius);
+  transition: border-color .2s, color .2s;
+}
+.btn-outline:hover { border-color: var(--muted); color: var(--white); }
+.hero-contact {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  font-size: 13px; color: var(--muted);
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.hero-contact a { transition: color .2s; }
+.hero-contact a:hover { color: var(--gold); }
+.hero-image {
+  position: relative; overflow: hidden;
+  background: #0a0a0a;
+}
+.hero-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 8s var(--ease);
+}
+.hero-image:hover img { transform: scale(1.04); }
+.hero-badge {
+  position: absolute; bottom: 32px; left: 32px;
+  background: rgba(0,0,0,.65);
+  border: 1px solid rgba(201,169,110,.3);
+  backdrop-filter: blur(12px);
+  padding: 14px 20px;
+  border-radius: var(--radius);
+}
+.hero-badge p { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+.hero-badge strong { font-size: 13px; color: var(--white); font-weight: 500; }
+
+/* ─── Stats bar ─── */
+.stats {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stats-inner {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  padding: 28px 32px;
+  border-right: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px;
+}
+.stat:last-child { border-right: 0; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 500; color: var(--gold);
+  line-height: 1;
+}
+.stat-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
+
+/* ─── Section commons ─── */
+section { padding: 100px 0; }
+.section-tag {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.section-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 400; line-height: 1.1;
+  letter-spacing: -1px; color: var(--white);
+  margin-bottom: 16px;
+}
+.section-lead { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 520px; }
+
+/* ─── Portfolio section ─── */
+#work { background: var(--bg); }
+.portfolio-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px; flex-wrap: wrap;
+}
+/* Tabs */
+.tabs {
+  display: flex; gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 8px 18px;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted);
+  border-radius: 4px;
+  transition: background .2s, color .2s;
+}
+.tab-btn:hover { color: var(--white); }
+.tab-btn.active {
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+}
+/* Grid */
+.portfolio-panel { display: none; }
+.portfolio-panel.active { display: grid; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+.work-card {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--card);
+}
+.work-card img {
+  width: 100%; height: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover; object-position: center;
+  display: block;
+  transition: transform .5s var(--ease);
+}
+.work-card:hover img { transform: scale(1.06); }
+.work-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+  display: flex; align-items: flex-end;
+  padding: 20px;
+}
+.work-card:hover .work-card-overlay { opacity: 1; }
+.work-card-label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white);
+}
+/* Featured wide card */
+.work-card.wide img { aspect-ratio: 16/7; }
+/* Before/after card */
+.work-card.split { position: relative; }
+.split-label {
+  position: absolute; top: 16px;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  background: rgba(0,0,0,.7); color: var(--gold);
+  padding: 4px 10px; border-radius: 3px;
+}
+.split-label.left { left: 16px; }
+.split-label.right { right: 16px; }
+
+/* Day-to-dusk panel: first image wide */
+#panel-dusk { grid-template-columns: 1fr 1fr; gap: 8px; }
+#panel-dusk .work-card:first-child { grid-column: 1 / -1; }
+#panel-dusk .work-card:first-child img { aspect-ratio: 16/7; }
+#panel-dusk .work-card img { aspect-ratio: 4/3; }
+
+/* ─── Services ─── */
+#services {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.services-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; margin-bottom: 60px; align-items: end;
+}
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+}
+.service-card {
+  background: var(--card);
+  padding: 36px 32px;
+  transition: background .25s;
+}
+.service-card:hover { background: #1f1f1f; }
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; color: var(--border);
+  line-height: 1; margin-bottom: 20px;
+  transition: color .25s;
+}
+.service-card:hover .service-num { color: var(--gold); }
+.service-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--white); margin-bottom: 12px;
+}
+.service-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+.service-tag {
+  display: inline-block; margin-top: 16px;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(201,169,110,.3);
+  padding: 4px 10px; border-radius: 3px;
+}
+
+/* ─── Process ─── */
+#process { background: var(--bg); }
+.process-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+  margin-top: 52px;
+}
+.process-step {
+  background: var(--card); padding: 36px 28px;
+  position: relative;
+}
+.process-step::before {
+  content: attr(data-step);
+  position: absolute; top: 24px; right: 24px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px; font-weight: 500;
+  color: rgba(201,169,110,.06); line-height: 1;
+}
+.process-icon { font-size: 28px; margin-bottom: 20px; }
+.process-step h3 { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+.process-step p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+/* ─── About ─── */
+#about {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 80px; align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-image-wrap img {
+  width: 100%; aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.about-floater {
+  position: absolute; bottom: -24px; right: -24px;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 20px 24px;
+  border-radius: 4px;
+  text-align: center;
+}
+.about-floater .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 500; line-height: 1;
+  display: block;
+}
+.about-floater .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.about-copy .section-h2 { margin-bottom: 24px; }
+.about-copy p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 20px; }
+.checklist {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin: 28px 0;
+}
+.check-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text);
+}
+.check-item::before {
+  content: '';
+  width: 18px; height: 18px; flex-shrink: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 9l3.5 3.5L14 6' stroke='%23c9a96e' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.about-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.link-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  font-size: 12px; letter-spacing: .5px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  transition: border-color .2s, color .2s;
+}
+.link-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── CTA / Contact ─── */
+#contact {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1507 100%);
+  border-top: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+#contact::before {
+  content: 'AGIL';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(160px, 22vw, 320px);
+  font-weight: 600;
+  color: rgba(201,169,110,.03);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative;
+}
+.contact-copy .section-h2 { margin-bottom: 20px; }
+.contact-copy p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+.contact-details { display: flex; flex-direction: column; gap: 12px; }
+.contact-detail-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 0;
+}
+.cd-icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(201,169,110,.1);
+  border: 1px solid rgba(201,169,110,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; line-height: 1;
+}
+.cd-body { display: flex; flex-direction: column; gap: 2px; }
+.cd-label {
+  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--muted);
+}
+.cd-value {
+  font-size: 15px; color: var(--white); transition: color .2s;
+}
+.cd-value:not(.cd-plain):hover { color: var(--gold); }
+.cd-plain { font-size: 13px; color: var(--text); }
+.contact-divider {
+  height: 1px; background: var(--border); margin: 4px 0;
+}
+.contact-actions { display: flex; flex-direction: column; gap: 16px; }
+.cta-big {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 20px 36px;
+  font-size: 14px; font-weight: 600; letter-spacing: .5px;
+  border-radius: var(--radius);
+  transition: transform .15s, background .2s;
+}
+.cta-big:hover { transform: translateY(-2px); }
+.cta-email { background: var(--gold); color: var(--bg); }
+.cta-email:hover { background: var(--gold-lt); }
+.cta-whatsapp { background: #25d366; color: #fff; }
+.cta-whatsapp:hover { background: #1fbe58; }
+.contact-note {
+  margin-top: 20px;
+  font-size: 12px; color: var(--muted); text-align: center;
+  line-height: 1.8;
+}
+
+/* ─── Footer ─── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: var(--muted); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ─── Lightbox ─── */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.95);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 92vw; max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  animation: lb-in .25s ease;
+}
+@keyframes lb-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
+.lb-close {
+  position: absolute; top: 20px; right: 24px;
+  font-size: 32px; color: var(--muted);
+  transition: color .2s;
+  line-height: 1;
+}
+.lb-close:hover { color: var(--white); }
+.lb-prev, .lb-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 36px; color: var(--muted);
+  padding: 12px;
+  transition: color .2s;
+  user-select: none;
+  line-height: 1;
+}
+.lb-prev:hover, .lb-next:hover { color: var(--gold); }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-caption {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(0,0,0,.6); padding: 6px 16px; border-radius: 20px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1100px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: 0; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { padding: 60px 24px 40px; order: 2; }
+  .hero-image { min-height: 55vw; order: 1; }
+  .services-intro { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-image-wrap { max-width: 420px; }
+  .about-floater { right: 0; bottom: -20px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  #panel-dusk { grid-template-columns: 1fr; }
+  #panel-dusk .work-card:first-child { grid-column: 1; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 32px); }
+  header { height: 64px; }
+  .navlinks { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); flex-direction: column; align-items: flex-start; padding: 20px 24px; gap: 20px; }
+  .navlinks.open { display: flex; }
+  .hamburger { display: block; }
+  .nav-cta { display: none; }
+  .brand-name { font-size: 30px; }
+  .brand-sub { display: none; }
+  .hero h1 { font-size: 42px; }
+  .hero-image { min-height: 260px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .tabs { gap: 2px; }
+  .tab-btn { padding: 7px 12px; font-size: 9px; }
+  .about-floater { display: none; }
+  .process-grid { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+  section { padding: 72px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="AGIL home">
+      <span class="brand-name">AGIL</span>
+      <span class="brand-sub">Real estate &<br>architectural<br>photo editor</span>
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#work">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Start a project ↗</a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="home">
+
+<!-- ═══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero" style="padding:0">
+  <div class="hero-copy">
+    <div class="eyebrow">Freelance photo editor</div>
+    <h1>Every space deserves<br>to be seen <em>at its best.</em></h1>
+    <p class="hero-lead">Real estate &amp; architectural photo editing with a natural, polished finish. 7+ years of experience delivering HDR blending, flambient editing, and day-to-dusk transformations.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#work">Explore the work →</a>
+      <a class="btn-outline" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-contact">
+      <a href="mailto:agilkongu@gmail.com">✉ agilkongu@gmail.com</a>
+      <a href="tel:+919087809645">✆ +91 9087809645</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="assets/hero.jpg" alt="Luxury home at dusk — day-to-dusk editing by AGIL" loading="eager">
+    <div class="hero-badge">
+      <p>Day-to-Dusk</p>
+      <strong>Sky Replacement &amp; Flambient</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     STATS
+════════════════════════════════════ -->
+<div class="stats">
+  <div class="wrap stats-inner">
+    <div class="stat">
+      <span class="stat-num">7+</span>
+      <span class="stat-label">Years of<br>experience</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">HDR</span>
+      <span class="stat-label">Natural-light<br>blending</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">☼</span>
+      <span class="stat-label">Day-to-Dusk<br>conversion</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Consistent<br>on-time delivery</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PORTFOLIO
+════════════════════════════════════ -->
+<section id="work">
+  <div class="wrap">
+    <div class="portfolio-head">
+      <div>
+        <div class="section-tag">Selected portfolio</div>
+        <h2 class="section-h2">Real work. Real results.</h2>
+        <p class="section-lead">A curated selection across every specialty — each image edited for accuracy, natural light and a professional finish.</p>
+      </div>
+      <a class="btn-outline" href="https://drive.google.com/drive/folders/1D1vObC89SbruT0Xv6SOa3kLgsgp2eNkl" target="_blank" rel="noopener">Full portfolio ↗</a>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" data-tab="all">All</button>
+      <button class="tab-btn" role="tab" data-tab="dusk">Day-to-Dusk</button>
+      <button class="tab-btn" role="tab" data-tab="interior">Interior</button>
+      <button class="tab-btn" role="tab" data-tab="exterior">Exterior</button>
+      <button class="tab-btn" role="tab" data-tab="architecture">Architecture</button>
+      <button class="tab-btn" role="tab" data-tab="staging">Staging</button>
+      <button class="tab-btn" role="tab" data-tab="floorplan">Floor Plans</button>
+    </div>
+
+    <!-- ── ALL panel ── -->
+    <div id="panel-all" class="portfolio-panel active grid-4" style="margin-top:16px">
+      <!-- Day-to-dusk -->
+      <article class="work-card wide" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-1.jpg" alt="Luxury home at dusk — day-to-dusk sky replacement" loading="lazy" data-caption="Day-to-Dusk · Sky Replacement">
+        <div class="work-card-overlay"><span class="work-card-label">Day-to-Dusk</span></div>
+      </article>
+      <!-- Interior -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-1.jpg" alt="Flambient kitchen — natural light balance" loading="lazy" data-caption="Interior · Flambient Editing">
+        <div class="work-card-overlay"><span class="work-card-label">Interior · Flambient</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-2.jpg" alt="Living room with fireplace — HDR blending" loading="lazy" data-caption="Interior · HDR Blending">
+        <div class="work-card-overlay"><span class="work-card-label">Interior · HDR Blend</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-3.jpg" alt="Open plan living area — natural light" loading="lazy" data-caption="Interior · Single Image Edit">
+        <div class="work-card-overlay"><span class="work-card-label">Interior · Natural Light</span></div>
+      </article>
+      <!-- Exterior -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-1.jpg" alt="Property exterior — single image editing" loading="lazy" data-caption="Exterior · Single Image Edit">
+        <div class="work-card-overlay"><span class="work-card-label">Exterior</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-3.jpg" alt="Residential exterior — color corrected" loading="lazy" data-caption="Exterior · Color Correction">
+        <div class="work-card-overlay"><span class="work-card-label">Exterior</span></div>
+      </article>
+      <!-- Dusk 2 -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-2.jpg" alt="Pool home at dusk — dramatic sky" loading="lazy" data-caption="Day-to-Dusk · Pool Exterior">
+        <div class="work-card-overlay"><span class="work-card-label">Day-to-Dusk</span></div>
+      </article>
+      <!-- Architecture -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/architecture/arch-1.jpg" alt="Commercial architecture — office space" loading="lazy" data-caption="Architecture · Commercial">
+        <div class="work-card-overlay"><span class="work-card-label">Architecture</span></div>
+      </article>
+      <!-- Staging -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/staging/staging-1.jpg" alt="Virtual staging — rooftop terrace" loading="lazy" data-caption="Staging · Outdoor Living">
+        <div class="work-card-overlay"><span class="work-card-label">Virtual Staging</span></div>
+      </article>
+      <!-- Floorplan -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/floorplan/floorplan-1.jpg" alt="2D floor plan — colored rendering" loading="lazy" data-caption="Floor Plan · 2D Color Rendering">
+        <div class="work-card-overlay"><span class="work-card-label">2D Floor Plan</span></div>
+      </article>
+      <!-- Dusk 3 -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-3.jpg" alt="Day-to-dusk — before after comparison" loading="lazy" data-caption="Day-to-Dusk · Transformation">
+        <div class="work-card-overlay"><span class="work-card-label">Day-to-Dusk</span></div>
+      </article>
+      <!-- Exterior 4 -->
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-4.jpg" alt="Residential exterior" loading="lazy" data-caption="Exterior · Natural Light">
+        <div class="work-card-overlay"><span class="work-card-label">Exterior</span></div>
+      </article>
+    </div>
+
+    <!-- ── DAY-TO-DUSK panel ── -->
+    <div id="panel-dusk" class="portfolio-panel" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-1.jpg" alt="Luxury two-storey home at dusk" loading="lazy" data-caption="Day-to-Dusk · Luxury Home">
+        <div class="work-card-overlay"><span class="work-card-label">Luxury Residence</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-2.jpg" alt="Pool home at sunset" loading="lazy" data-caption="Day-to-Dusk · Pool &amp; Backyard">
+        <div class="work-card-overlay"><span class="work-card-label">Pool &amp; Backyard</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-3.jpg" alt="Before and after dusk conversion" loading="lazy" data-caption="Day-to-Dusk · Before &amp; After">
+        <div class="work-card-overlay"><span class="work-card-label">Before &amp; After</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/day-to-dusk/dusk-4.jpg" alt="Dusk sky replacement" loading="lazy" data-caption="Day-to-Dusk · Sky Replacement">
+        <div class="work-card-overlay"><span class="work-card-label">Sky Replacement</span></div>
+      </article>
+    </div>
+
+    <!-- ── INTERIOR panel ── -->
+    <div id="panel-interior" class="portfolio-panel grid-3" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-1.jpg" alt="Kitchen flambient editing" loading="lazy" data-caption="Interior · Kitchen Flambient">
+        <div class="work-card-overlay"><span class="work-card-label">Kitchen · Flambient</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-2.jpg" alt="Living room with stone fireplace" loading="lazy" data-caption="Interior · Living Room HDR">
+        <div class="work-card-overlay"><span class="work-card-label">Living Room · HDR</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/interior/interior-3.jpg" alt="Open plan living area — natural light" loading="lazy" data-caption="Interior · Open Plan">
+        <div class="work-card-overlay"><span class="work-card-label">Open Plan · Natural Light</span></div>
+      </article>
+    </div>
+
+    <!-- ── EXTERIOR panel ── -->
+    <div id="panel-exterior" class="portfolio-panel grid-3" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-1.jpg" alt="Exterior single edit" loading="lazy" data-caption="Exterior · Single Image Edit">
+        <div class="work-card-overlay"><span class="work-card-label">Single Image Edit</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-2.jpg" alt="Residential exterior" loading="lazy" data-caption="Exterior · Residential">
+        <div class="work-card-overlay"><span class="work-card-label">Residential</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-3.jpg" alt="Property exterior natural light" loading="lazy" data-caption="Exterior · Natural Light">
+        <div class="work-card-overlay"><span class="work-card-label">Natural Light</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-4.jpg" alt="Residential back garden" loading="lazy" data-caption="Exterior · Garden">
+        <div class="work-card-overlay"><span class="work-card-label">Garden &amp; Pool</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-5.jpg" alt="Alfresco outdoor living area" loading="lazy" data-caption="Exterior · Alfresco">
+        <div class="work-card-overlay"><span class="work-card-label">Alfresco Living</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/exterior/exterior-6.jpg" alt="Exterior color balance" loading="lazy" data-caption="Exterior · Color Correction">
+        <div class="work-card-overlay"><span class="work-card-label">Color Correction</span></div>
+      </article>
+    </div>
+
+    <!-- ── ARCHITECTURE panel ── -->
+    <div id="panel-architecture" class="portfolio-panel grid-4" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/architecture/arch-1.jpg" alt="Commercial office interior" loading="lazy" data-caption="Architecture · Commercial Office">
+        <div class="work-card-overlay"><span class="work-card-label">Commercial Office</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/architecture/arch-2.jpg" alt="Modern workspace architecture" loading="lazy" data-caption="Architecture · Workspace">
+        <div class="work-card-overlay"><span class="work-card-label">Modern Workspace</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/architecture/arch-3.jpg" alt="Architectural interior natural works" loading="lazy" data-caption="Architecture · Natural Works">
+        <div class="work-card-overlay"><span class="work-card-label">Natural Works</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/architecture/arch-4.jpg" alt="Architectural photography editing" loading="lazy" data-caption="Architecture · Structural">
+        <div class="work-card-overlay"><span class="work-card-label">Structural</span></div>
+      </article>
+    </div>
+
+    <!-- ── STAGING panel ── -->
+    <div id="panel-staging" class="portfolio-panel grid-2" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/staging/staging-1.jpg" alt="Virtual staging — rooftop terrace with furniture" loading="lazy" data-caption="Virtual Staging · Outdoor Terrace">
+        <div class="work-card-overlay"><span class="work-card-label">Outdoor Terrace</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/staging/staging-2.jpg" alt="Virtual staging — before version" loading="lazy" data-caption="Virtual Staging · Before">
+        <div class="work-card-overlay"><span class="work-card-label">Before Staging</span></div>
+      </article>
+    </div>
+
+    <!-- ── FLOORPLAN panel ── -->
+    <div id="panel-floorplan" class="portfolio-panel grid-3" style="margin-top:16px">
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/floorplan/floorplan-1.jpg" alt="2D color floor plan — full house layout" loading="lazy" data-caption="Floor Plan · Full House 2D">
+        <div class="work-card-overlay"><span class="work-card-label">Full House Layout</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/floorplan/floorplan-2.jpg" alt="2D floor plan coloring" loading="lazy" data-caption="Floor Plan · 2D Color">
+        <div class="work-card-overlay"><span class="work-card-label">2D Color Rendering</span></div>
+      </article>
+      <article class="work-card" onclick="openLightbox(this)">
+        <img src="assets/portfolio/floorplan/floorplan-3.jpg" alt="Floor plan render" loading="lazy" data-caption="Floor Plan · Simple Layout">
+        <div class="work-card-overlay"><span class="work-card-label">Simple Layout</span></div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SERVICES
+════════════════════════════════════ -->
+<section id="services">
+  <div class="wrap">
+    <div class="services-intro">
+      <div>
+        <div class="section-tag">What I do</div>
+        <h2 class="section-h2">Editing that lets the property shine.</h2>
+      </div>
+      <p class="section-lead">Every image gets the same careful attention — accurate exposure, clean colors, balanced windows, and a realistic finish that earns listings more clicks.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-num">01</div>
+        <h3>Single Image Editing</h3>
+        <p>Clean, considered retouching: refined exposure, accurate white balance, horizon correction, and realistic colors for a polished final image ready to publish.</p>
+        <span class="service-tag">Most popular</span>
+      </article>
+      <article class="service-card">
+        <div class="service-num">02</div>
+        <h3>HDR Blending</h3>
+        <p>Multiple exposures merged to retain interior shadow detail and bright window views simultaneously — keeping the scene natural and well-balanced without blown highlights.</p>
+        <span class="service-tag">Interior specialty</span>
+      </article>
+      <article class="service-card">
+        <div class="service-num">03</div>
+        <h3>Flambient Editing</h3>
+        <p>Flash and ambient exposures combined for realistic lighting with controlled color temperatures — the gold standard for high-end property photography.</p>
+        <span class="service-tag">Premium finish</span>
+      </article>
+      <article class="service-card">
+        <div class="service-num">04</div>
+        <h3>Day-to-Dusk</h3>
+        <p>Transform a flat daytime exterior shot into a dramatic, warm dusk scene with natural-looking sky replacements, lit windows and glowing landscaping.</p>
+        <span class="service-tag">High impact</span>
+      </article>
+      <article class="service-card">
+        <div class="service-num">05</div>
+        <h3>Virtual Staging</h3>
+        <p>Add digital furniture and décor to empty rooms and outdoor spaces so buyers can visualize the potential of every listing.</p>
+        <span class="service-tag">Vacant properties</span>
+      </article>
+      <article class="service-card">
+        <div class="service-num">06</div>
+        <h3>2D Floor Plan Coloring</h3>
+        <p>Black-and-white architectural drawings transformed into clean, color-coded floor plan graphics that make listings immediately easier to understand.</p>
+        <span class="service-tag">Add-on service</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PROCESS
+════════════════════════════════════ -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-tag">How it works</div>
+    <h2 class="section-h2">Simple, reliable workflow.</h2>
+    <p class="section-lead">A clear, repeatable process means consistent quality and on-time delivery — every single project.</p>
+    <div class="process-grid">
+      <div class="process-step" data-step="1">
+        <div class="process-icon">📤</div>
+        <h3>Send your files</h3>
+        <p>Upload RAW or JPEG files via Dropbox, WeTransfer, Google Drive or any platform you prefer. Include shooting notes if helpful.</p>
+      </div>
+      <div class="process-step" data-step="2">
+        <div class="process-icon">🎛</div>
+        <h3>Editing begins</h3>
+        <p>Each image is edited to match your brief — natural exposure, accurate colors, clean skies, and balanced light throughout.</p>
+      </div>
+      <div class="process-step" data-step="3">
+        <div class="process-icon">✅</div>
+        <h3>Review &amp; revisions</h3>
+        <p>Receive finished images for review. Revisions are handled quickly until you're completely satisfied with the results.</p>
+      </div>
+      <div class="process-step" data-step="4">
+        <div class="process-icon">📦</div>
+        <h3>Delivery</h3>
+        <p>High-resolution files delivered on time via your preferred platform — ready to upload to listing portals immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     ABOUT
+════════════════════════════════════ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-image-wrap">
+      <img src="assets/portfolio/day-to-dusk/dusk-1.jpg" alt="Example of AGIL's day-to-dusk editing work">
+      <div class="about-floater">
+        <span class="num">7+</span>
+        <span class="label">Years editing</span>
+      </div>
+    </div>
+    <div class="about-copy">
+      <div class="section-tag">About AGIL</div>
+      <h2 class="section-h2">Thoughtful edits. Natural results. Reliable delivery.</h2>
+      <p>I'm AGIL, a freelance real estate and architectural photo editor based in India, working with photographers and agencies across Australia, the USA, the UK and beyond. With over seven years of experience, I specialize in making property images look their absolute best — bright, balanced and professional, without losing the natural character of the space.</p>
+      <p>My approach is straightforward: accurate colors, realistic lighting, a consistent workflow, and dependable delivery on every project. Whether it's a single listing or an ongoing volume account, each image gets the same careful attention.</p>
+      <div class="checklist">
+        <div class="check-item">7+ years of experience</div>
+        <div class="check-item">High-quality results</div>
+        <div class="check-item">Natural, realistic editing</div>
+        <div class="check-item">Consistent workflow</div>
+        <div class="check-item">On-time delivery</div>
+        <div class="check-item">Clear communication</div>
+      </div>
+      <div class="about-links">
+        <a class="link-btn" href="https://www.linkedin.com/in/agil-agilan-b2a722214/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="link-btn" href="https://agilkongu.wixsite.com/realestateimageedito" target="_blank" rel="noopener">Previous site ↗</a>
+        <a class="link-btn" href="https://drive.google.com/drive/folders/1D1vObC89SbruT0Xv6SOa3kLgsgp2eNkl" target="_blank" rel="noopener">Full portfolio ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CTA / CONTACT
+════════════════════════════════════ -->
+<section id="contact">
+  <div class="wrap contact-inner">
+    <div class="contact-copy">
+      <div class="section-tag">Have a project?</div>
+      <h2 class="section-h2">Let's make your next listing stand out.</h2>
+      <p>Send over your project details — RAW files, shooting notes, turnaround needs — and I'll get back to you promptly with a quote and timeline.</p>
+      <div class="contact-details">
+        <div class="contact-detail-row">
+          <span class="cd-icon">✉</span>
+          <div class="cd-body">
+            <span class="cd-label">Email</span>
+            <a class="cd-value" href="mailto:agilkongu@gmail.com">agilkongu@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-detail-row">
+          <span class="cd-icon">📱</span>
+          <div class="cd-body">
+            <span class="cd-label">Phone / WhatsApp</span>
+            <a class="cd-value" href="tel:+919087809645">+91 9087809645</a>
+          </div>
+        </div>
+        <div class="contact-divider"></div>
+        <div class="contact-detail-row">
+          <span class="cd-icon">⚡</span>
+          <div class="cd-body">
+            <span class="cd-label">Response time</span>
+            <span class="cd-value cd-plain">Within 24 hours</span>
+          </div>
+        </div>
+        <div class="contact-detail-row">
+          <span class="cd-icon">📂</span>
+          <div class="cd-body">
+            <span class="cd-label">Files accepted via</span>
+            <span class="cd-value cd-plain">Dropbox · WeTransfer · Google Drive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a class="cta-big cta-email" href="mailto:agilkongu@gmail.com?subject=Real%20Estate%20Photo%20Editing%20Enquiry">
+        ✉ Send an email
+      </a>
+      <a class="cta-big cta-whatsapp" href="https://wa.me/919087809645?text=Hi%20AGIL%2C%20I%27d%20like%20to%20discuss%20a%20photo%20editing%20project." target="_blank" rel="noopener">
+        💬 Message on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div class="wrap footer-inner">
+    <span class="footer-copy">© <span id="yr"></span> AGIL · Real Estate &amp; Architectural Photo Editor</span>
+    <div class="footer-links">
+      <a href="mailto:agilkongu@gmail.com">Email</a>
+      <a href="https://wa.me/919087809645" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.linkedin.com/in/agil-agilan-b2a722214/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://drive.google.com/drive/folders/1D1vObC89SbruT0Xv6SOa3kLgsgp2eNkl" target="_blank" rel="noopener">Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" onclick="closeLightboxOutside(event)">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Close">×</button>
+  <button class="lb-prev" onclick="lbNav(-1)" aria-label="Previous">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1)" aria-label="Next">›</button>
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<script>
+// ── Year ──
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ── Portfolio tabs ──
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.portfolio-panel');
+
+tabs.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    tabs.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const target = document.getElementById('panel-' + tab);
+    if (target) target.classList.add('active');
+  });
+});
+
+// ── Lightbox ──
+let lbImages = [];
+let lbIndex = 0;
+
+function buildImageList() {
+  const activePanel = document.querySelector('.portfolio-panel.active');
+  if (!activePanel) return [];
+  return Array.from(activePanel.querySelectorAll('.work-card img'));
+}
+
+function openLightbox(card) {
+  const img = card.querySelector('img');
+  lbImages = buildImageList();
+  lbIndex = lbImages.indexOf(img);
+  if (lbIndex < 0) lbIndex = 0;
+  showLbImage();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLbImage() {
+  const img = lbImages[lbIndex];
+  if (!img) return;
+  const lbImg = document.getElementById('lb-img');
+  lbImg.src = img.src;
+  lbImg.alt = img.alt;
+  document.getElementById('lb-caption').textContent = img.dataset.caption || '';
+}
+
+function lbNav(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  showLbImage();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+// ── Sticky header opacity ──
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  header.style.background = window.scrollY > 40
+    ? 'rgba(13,13,13,.97)'
+    : 'rgba(13,13,13,.85)';
+});
+</script>
+</body>
+</html>
